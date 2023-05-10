@@ -12,6 +12,8 @@ export class AppComponent {
 
   ngAfterViewChecked() {
     let editor = this.ckeditor.instance;
+   // editor.config.mathJaxLib = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML';
+    //editor.config.mathJaxClass = 'equation';
     editor.config.height = '400';
     editor.config.toolbarGroups = [
       { name: 'document', groups: ['mode', 'document', 'doctools'] },
@@ -29,7 +31,7 @@ export class AppComponent {
       { name: 'tools', groups: ['tools'] },
       { name: 'others', groups: ['others', 'boton1', 'boton2', 'boton3'] },
     ];
-    editor.config.removeButtons = 'Preview,PasteFromWord,Anchor,about';
+    editor.config.removeButtons = 'Preview,PasteFromWord,Anchor,about,Language';
 
 
 //boton1
@@ -74,5 +76,21 @@ export class AppComponent {
         alert('boton3');
       }
     });
+
+    /*editor.ui.addButton('insertMathjax', {
+      label: 'Insertar Fórmula',
+      command: 'mathjax',
+      toolbar: 'insert',
+      icon: 'https://img2.freepng.es/20180901/qoa/kisspng-computer-icons-hyperlink-favicon-url-shortening-po-ms-lianjie-svg-png-icon-free-download-331745-5b8ad9b3d25566.5256320315358263558615.jpg'
+    });
+    
+    editor.addCommand('mathjax', {
+      //@ts-ignore
+      exec: function(editor) {
+        // Aquí puedes abrir un cuadro de diálogo personalizado para ingresar la fórmula o utilizar alguna otra forma de entrada.
+        // Luego, inserta la fórmula en el editor utilizando el siguiente código:
+        editor.insertHtml('<span class="mathjax-latex">Tu fórmula matemática aquí</span>');
+      }
+    });*/
   }
 }
