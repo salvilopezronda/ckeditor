@@ -12,6 +12,15 @@ export class AppComponent {
 
   ngAfterViewChecked(){
     let editor =  this.ckeditor.instance;
+    editor.addCommand('yourCustomCommand', {
+      // @ts-ignore
+      exec: () => {
+        alert("boton nuevo")
+      },
+      refresh: () => {},
+    });
+
+
     editor.config.height = '400';
   	editor.config.toolbarGroups = [
       { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
@@ -27,12 +36,14 @@ export class AppComponent {
       { name: 'styles', groups: [ 'styles' ] },
       { name: 'colors', groups: [ 'colors' ] },
       { name: 'tools', groups: [ 'tools' ] },
-      { name: 'others', groups: [ 'others' ] },
-      { name: 'about', groups: [ 'about' ] }
+      { name: 'others', groups: [ 'others'] },
     ];
-  
-    editor.config.removeButtons = 'Preview,PasteFromWord,Anchor';
+    editor.config.removeButtons = 'Preview,PasteFromWord,Anchor,about';
+    
 
+
+
+  
   }
   }
 
