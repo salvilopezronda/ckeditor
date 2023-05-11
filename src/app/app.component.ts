@@ -1,18 +1,27 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { CKEditorComponent } from 'ng2-ckeditor';
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
+
   title = 'ckeditor';
   ckeditorContent: string = '';
   @ViewChild(CKEditorComponent) ckeditor: CKEditorComponent;
+  MathJax: any;
 
+
+
+  ngAfterViewInit(): void {
+    this.MathJax.Hub.Queue(['Typeset', this.MathJax.Hub]);
+  }
   ngAfterViewChecked() {
     let editor = this.ckeditor.instance;
-   // editor.config.mathJaxLib = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML';
+    // editor.config.mathJaxLib = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML';
     //editor.config.mathJaxClass = 'equation';
     editor.config.height = '400';
     editor.config.toolbarGroups = [
@@ -34,7 +43,7 @@ export class AppComponent {
     editor.config.removeButtons = 'Preview,PasteFromWord,Anchor,about,Language';
 
 
-//boton1
+    //boton1
     editor.ui.addButton('boton1', {
       label: 'comandoBoton1',
       command: 'comandoBoton1',
@@ -48,7 +57,7 @@ export class AppComponent {
         alert('boton1');
       }
     });
-//boton2
+    //boton2
     editor.ui.addButton('boton2', {
       label: 'comandoBoton2',
       command: 'comandoBoton2',
